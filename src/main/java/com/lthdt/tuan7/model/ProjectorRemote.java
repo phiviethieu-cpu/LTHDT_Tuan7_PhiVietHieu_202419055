@@ -1,3 +1,8 @@
+/****************/
+// Mã sinh viên: 202419055
+// Họ tên: Phí Việt Hiếu
+/****************/
+
 package com.lthdt.tuan7.model;
 
 public class ProjectorRemote extends TeachingDevice {
@@ -12,6 +17,7 @@ public class ProjectorRemote extends TeachingDevice {
         return batteryLevel;
     }
 
+    // pin tu 20% tro len moi cho muon
     @Override
     public boolean isReadyForUse() {
         return getStatus() == DeviceStatus.AVAILABLE && batteryLevel >= 20;

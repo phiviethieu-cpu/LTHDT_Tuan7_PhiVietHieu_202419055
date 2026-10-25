@@ -1,3 +1,8 @@
+/****************/
+// Mã sinh viên: 202419055
+// Họ tên: Phí Việt Hiếu
+/****************/
+
 package com.lthdt.tuan7.service;
 
 import com.lthdt.tuan7.model.TeachingDevice;
@@ -30,6 +35,7 @@ public class AllocationService<T extends TeachingDevice> {
         // loc thiet bi san sang va thoa dieu kien
         List<T> ungVien = repository.findAll(d -> d.isReadyForUse() && additionalCondition.test(d));
 
+        // chon thiet bi roi cho muon
         T chon = strategy.select(ungVien);
         chon.borrow();
         return chon;

@@ -1,3 +1,8 @@
+/****************/
+// Mã sinh viên: 202419055
+// Họ tên: Phí Việt Hiếu
+/****************/
+
 package com.lthdt.tuan7.model;
 
 public class WirelessMicrophone extends TeachingDevice {

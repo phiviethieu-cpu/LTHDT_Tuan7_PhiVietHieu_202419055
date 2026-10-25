@@ -1,3 +1,8 @@
+/****************/
+// Mã sinh viên: 202419055
+// Họ tên: Phí Việt Hiếu
+/****************/
+
 package com.lthdt.tuan7.repository;
 
 import com.lthdt.tuan7.model.Identifiable;
@@ -13,6 +18,7 @@ public class InMemoryRepository<T extends Identifiable> implements Repository<T>
     // luu theo ma thiet bi
     private final Map<String, T> duLieu = new LinkedHashMap<>();
 
+    // khong nhan null va ma trung
     @Override
     public void add(T item) {
         if (item == null) {

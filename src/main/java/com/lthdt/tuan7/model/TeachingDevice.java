@@ -1,3 +1,8 @@
+/****************/
+// Mã sinh viên: 202419055
+// Họ tên: Phí Việt Hiếu
+/****************/
+
 package com.lthdt.tuan7.model;
 
 import com.lthdt.tuan7.exception.DeviceNotReadyException;
@@ -39,10 +44,12 @@ public abstract class TeachingDevice implements Identifiable {
         this.status = status;
     }
 
+    // moi loai thiet bi tu cai dat
     public abstract boolean isReadyForUse();
 
     public abstract double getDefaultPriorityScore();
 
+    // cho muon thiet bi
     public void borrow() {
         if (!isReadyForUse()) {
             throw new DeviceNotReadyException(id, status);

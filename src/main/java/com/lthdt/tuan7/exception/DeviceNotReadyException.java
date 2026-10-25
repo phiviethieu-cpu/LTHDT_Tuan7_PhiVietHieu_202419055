@@ -1,7 +1,13 @@
+/****************/
+// Mã sinh viên: 202419055
+// Họ tên: Phí Việt Hiếu
+/****************/
+
 package com.lthdt.tuan7.exception;
 
 import com.lthdt.tuan7.model.DeviceStatus;
 
+// muon thiet bi khi chua san sang
 public class DeviceNotReadyException extends RuntimeException {
     private final String deviceId;
     private final DeviceStatus currentStatus;

@@ -1,3 +1,8 @@
+/****************/
+// Mã sinh viên: 202419055
+// Họ tên: Phí Việt Hiếu
+/****************/
+
 package com.lthdt.tuan7;
 
 import com.lthdt.tuan7.exception.DuplicateIdException;
@@ -15,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Tuan 7 - quan ly thiet bi phong day");
 
+        // tao kho cho tung loai thiet bi
         InMemoryRepository<ProjectorRemote> khoMayChieu = new InMemoryRepository<>();
         InMemoryRepository<AirConditionerRemote> khoDieuHoa = new InMemoryRepository<>();
         InMemoryRepository<WirelessMicrophone> khoMic = new InMemoryRepository<>();
@@ -93,6 +99,7 @@ public class Main {
         System.out.println("InMemoryRepository<WirelessMicrophone>: " + khoMic.getAll().size() + " thiet bi");
     }
 
+    // cac ham phu de in ket qua
     static void tieuDe(String s) {
         System.out.println();
         System.out.println("--- " + s + " ---");

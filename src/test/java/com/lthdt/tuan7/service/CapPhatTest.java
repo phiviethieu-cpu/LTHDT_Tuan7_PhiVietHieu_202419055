@@ -1,3 +1,8 @@
+/****************/
+// Mã sinh viên: 202419055
+// Họ tên: Phí Việt Hiếu
+/****************/
+
 package com.lthdt.tuan7.service;
 
 import com.lthdt.tuan7.exception.NoSuitableItemException;
@@ -17,6 +22,7 @@ class CapPhatTest {
     private InMemoryRepository<AirConditionerRemote> khoDieuHoa;
     private InMemoryRepository<WirelessMicrophone> khoMic;
 
+    // du lieu mau: 3 may chieu, 2 dieu hoa, 3 micro
     @BeforeEach
     void setUp() {
         khoMayChieu = new InMemoryRepository<>();
