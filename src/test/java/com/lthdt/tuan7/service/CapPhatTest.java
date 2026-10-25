@@ -123,4 +123,21 @@ class CapPhatTest {
         assertThrows(IllegalArgumentException.class,
                 () -> new AllocationService<>(khoMayChieu, null));
     }
+
+    @Test
+    void dieuKienNullThiChiLocSanSang() {
+        AllocationService<ProjectorRemote> service =
+                new AllocationService<>(khoMayChieu, new FirstAvailableStrategy<>());
+
+        assertEquals("PR01", service.allocate(null).getId());
+    }
+
+    // cham diem dieu hoa theo phong can dung
+    @Test
+    void chonDieuHoaBangDiemTheoPhong() {
+        AllocationService<AirConditionerRemote> service = new AllocationService<>(khoDieuHoa,
+                new HighestPriorityStrategy<>(d -> d.tinhDiemTheoPhong("A203")));
+
+        assertEquals("AC02", service.allocate(null).getId());
+    }
 }

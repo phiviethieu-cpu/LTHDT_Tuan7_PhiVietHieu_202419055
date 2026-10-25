@@ -8,6 +8,7 @@ package com.lthdt.tuan7.model;
 import com.lthdt.tuan7.exception.DeviceNotReadyException;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -104,5 +105,38 @@ class ThietBiTest {
     void traKhiChuaMuonThiBaoLoi() {
         ProjectorRemote pr = new ProjectorRemote("PR01", "Dieu khien may chieu", "Kho A", 90);
         assertThrows(IllegalStateException.class, pr::returnDevice);
+    }
+
+    // cac truong hop bien
+    @Test
+    void micDiemTongLe() {
+        WirelessMicrophone mic = new WirelessMicrophone("MC04", "Micro", "Kho B", 85, 90);
+        assertEquals(87.5, mic.getDefaultPriorityScore());
+    }
+
+    @Test
+    void thongTinRongThiBaoLoi() {
+        assertThrows(IllegalArgumentException.class, () -> new ProjectorRemote("", "May chieu", "Kho A", 50));
+        assertThrows(IllegalArgumentException.class, () -> new ProjectorRemote("   ", "May chieu", "Kho A", 50));
+        assertThrows(IllegalArgumentException.class, () -> new ProjectorRemote("PR09", " ", "Kho A", 50));
+        assertThrows(IllegalArgumentException.class, () -> new ProjectorRemote("PR09", "May chieu", "", 50));
+    }
+
+    @Test
+    void pinVaTinHieuNgoaiKhoangThiBaoLoi() {
+        assertThrows(IllegalArgumentException.class, () -> new ProjectorRemote("PR09", "May chieu", "Kho A", 150));
+        assertThrows(IllegalArgumentException.class, () -> new ProjectorRemote("PR09", "May chieu", "Kho A", -5));
+        assertThrows(IllegalArgumentException.class, () -> new WirelessMicrophone("MC09", "Micro", "Kho B", 80, 101));
+        assertDoesNotThrow(() -> new WirelessMicrophone("MC09", "Micro", "Kho B", 0, 100));
+    }
+
+    @Test
+    void dsPhongKhongSuaDuocTuBenNgoai() {
+        Set<String> phong = new HashSet<>(Set.of("A203"));
+        AirConditionerRemote ac = new AirConditionerRemote("AC09", "Dieu hoa", "Kho A", phong);
+
+        phong.add("B101");
+        assertFalse(ac.isCompatibleWith("B101"));
+        assertThrows(UnsupportedOperationException.class, () -> ac.getCompatibleRooms().add("C301"));
     }
 }

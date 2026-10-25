@@ -32,8 +32,11 @@ public class AllocationService<T extends TeachingDevice> {
     }
 
     public T allocate(Predicate<T> additionalCondition) {
+        // khong truyen dieu kien thi chi loc thiet bi san sang
+        Predicate<T> dieuKien = additionalCondition != null ? additionalCondition : d -> true;
+
         // loc thiet bi san sang va thoa dieu kien
-        List<T> ungVien = repository.findAll(d -> d.isReadyForUse() && additionalCondition.test(d));
+        List<T> ungVien = repository.findAll(d -> d.isReadyForUse() && dieuKien.test(d));
 
         // chon thiet bi roi cho muon
         T chon = strategy.select(ungVien);

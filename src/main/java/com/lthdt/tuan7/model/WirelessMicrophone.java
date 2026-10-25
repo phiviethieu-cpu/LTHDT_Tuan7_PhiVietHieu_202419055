@@ -11,8 +11,8 @@ public class WirelessMicrophone extends TeachingDevice {
 
     public WirelessMicrophone(String id, String name, String storageLocation, int mucPin, int tinHieu) {
         super(id, name, storageLocation);
-        this.batteryLevel = mucPin;
-        this.signalQuality = tinHieu;
+        this.batteryLevel = kiemTraPhanTram(mucPin, "Muc pin");
+        this.signalQuality = kiemTraPhanTram(tinHieu, "Chat luong tin hieu");
     }
 
     public int getBatteryLevel() {
@@ -33,6 +33,6 @@ public class WirelessMicrophone extends TeachingDevice {
     // trung binh pin va tin hieu
     @Override
     public double getDefaultPriorityScore() {
-        return (batteryLevel + signalQuality) / 2;
+        return (batteryLevel + signalQuality) / 2.0;
     }
 }

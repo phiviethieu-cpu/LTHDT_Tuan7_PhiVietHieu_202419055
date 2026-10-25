@@ -15,7 +15,7 @@ public class AirConditionerRemote extends TeachingDevice {
         if (dsPhong == null) {
             throw new IllegalArgumentException("Danh sach phong khong hop le");
         }
-        this.compatibleRooms = dsPhong;
+        this.compatibleRooms = Set.copyOf(dsPhong);
     }
 
     public Set<String> getCompatibleRooms() {

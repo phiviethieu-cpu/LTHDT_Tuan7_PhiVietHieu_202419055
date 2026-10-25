@@ -10,7 +10,7 @@ public class ProjectorRemote extends TeachingDevice {
 
     public ProjectorRemote(String id, String name, String storageLocation, int mucPin) {
         super(id, name, storageLocation);
-        this.batteryLevel = mucPin;
+        this.batteryLevel = kiemTraPhanTram(mucPin, "Muc pin");
     }
 
     public int getBatteryLevel() {

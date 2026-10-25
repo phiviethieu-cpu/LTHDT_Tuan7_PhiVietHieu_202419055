@@ -14,13 +14,26 @@ public abstract class TeachingDevice implements Identifiable {
     private DeviceStatus status;
 
     protected TeachingDevice(String id, String name, String storageLocation) {
-        if (id == null || name == null || storageLocation == null) {
-            throw new IllegalArgumentException("Thong tin thiet bi khong duoc de trong");
-        }
-        this.id = id;
-        this.name = name;
-        this.storageLocation = storageLocation;
+        this.id = kiemTraChuoi(id, "Ma thiet bi");
+        this.name = kiemTraChuoi(name, "Ten thiet bi");
+        this.storageLocation = kiemTraChuoi(storageLocation, "Vi tri luu tru");
         this.status = DeviceStatus.AVAILABLE;
+    }
+
+    // chuoi khong duoc null, rong hoac toan dau cach
+    private static String kiemTraChuoi(String s, String tenTruong) {
+        if (s == null || s.isBlank()) {
+            throw new IllegalArgumentException(tenTruong + " khong duoc de trong");
+        }
+        return s;
+    }
+
+    // pin, tin hieu phai tu 0 den 100
+    protected static int kiemTraPhanTram(int giaTri, String tenTruong) {
+        if (giaTri < 0 || giaTri > 100) {
+            throw new IllegalArgumentException(tenTruong + " phai tu 0 den 100: " + giaTri);
+        }
+        return giaTri;
     }
 
     @Override
