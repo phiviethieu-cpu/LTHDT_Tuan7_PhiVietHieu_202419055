@@ -20,5 +20,5 @@ public interface Repository<T extends Identifiable> {
 
     List<T> getAll();
 
-    List<T> findAll(Predicate<T> condition);
+    List<T> findAll(Predicate<? super T> condition);
 }

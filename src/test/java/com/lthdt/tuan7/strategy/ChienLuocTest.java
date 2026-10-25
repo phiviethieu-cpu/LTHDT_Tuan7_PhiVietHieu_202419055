@@ -49,4 +49,34 @@ class ChienLuocTest {
 
         assertEquals(List.of(4, 8, 1), ds);
     }
+
+    // bang diem thi lay phan tu dung truoc
+    @Test
+    void hoaDiemThiChonPhanTuDau() {
+        HighestPriorityStrategy<String> cl = new HighestPriorityStrategy<>(String::length);
+        assertEquals("abc", cl.select(List.of("ab", "abc", "xyz", "de")));
+    }
+
+    @Test
+    void diemAmVanChonDung() {
+        HighestPriorityStrategy<Integer> cl = new HighestPriorityStrategy<>(x -> x);
+        assertEquals(-2, cl.select(List.of(-5, -2, -9)));
+    }
+
+    @Test
+    void hamTinhDiemNullThiBaoLoiNgay() {
+        assertThrows(IllegalArgumentException.class, () -> new HighestPriorityStrategy<Integer>(null));
+    }
+
+    @Test
+    void danhSachNullThiBaoLoi() {
+        assertThrows(NoSuitableItemException.class,
+                () -> new HighestPriorityStrategy<Integer>(x -> x).select(null));
+    }
+
+    @Test
+    void diemNaNThiBaoLoi() {
+        HighestPriorityStrategy<Double> cl = new HighestPriorityStrategy<>(x -> x);
+        assertThrows(IllegalStateException.class, () -> cl.select(List.of(1.0, Double.NaN)));
+    }
 }

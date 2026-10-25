@@ -24,10 +24,14 @@ public class InMemoryRepository<T extends Identifiable> implements Repository<T>
         if (item == null) {
             throw new IllegalArgumentException("Khong the them null");
         }
-        if (duLieu.containsKey(item.getId())) {
-            throw new DuplicateIdException(item.getId());
+        String id = item.getId();
+        if (id == null || id.isBlank()) {
+            throw new IllegalArgumentException("Ma doi tuong khong hop le");
         }
-        duLieu.put(item.getId(), item);
+        if (duLieu.containsKey(id)) {
+            throw new DuplicateIdException(id);
+        }
+        duLieu.put(id, item);
     }
 
     @Override
@@ -46,9 +50,12 @@ public class InMemoryRepository<T extends Identifiable> implements Repository<T>
     }
 
     @Override
-    public List<T> findAll(Predicate<T> condition) {
+    public List<T> findAll(Predicate<? super T> condition) {
+        if (condition == null) {
+            throw new IllegalArgumentException("Dieu kien loc khong duoc null");
+        }
         List<T> kq = new ArrayList<>();
-        for (T x : duLieu.values()) {
+        for (T x : List.copyOf(duLieu.values())) {   // duyet tren ban sao
             if (condition.test(x)) {
                 kq.add(x);
             }

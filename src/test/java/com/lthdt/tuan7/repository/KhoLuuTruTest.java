@@ -6,6 +6,7 @@
 package com.lthdt.tuan7.repository;
 
 import com.lthdt.tuan7.exception.DuplicateIdException;
+import com.lthdt.tuan7.model.Identifiable;
 import com.lthdt.tuan7.model.ProjectorRemote;
 import com.lthdt.tuan7.model.WirelessMicrophone;
 import com.lthdt.tuan7.model.TeachingDevice;
@@ -89,5 +90,18 @@ class KhoLuuTruTest {
 
         assertEquals(1, khoMic.findAll(m -> m.isReadyForUse()).size());
         assertEquals(90, khoMic.findById("MC02").getSignalQuality());
+    }
+
+    @Test
+    void findAllDieuKienNullThiBaoLoi() {
+        assertThrows(IllegalArgumentException.class, () -> kho.findAll(null));
+    }
+
+    // kho generic co the chua doi tuong khong phai thiet bi
+    @Test
+    void themDoiTuongMaRongThiBaoLoi() {
+        InMemoryRepository<Identifiable> khoChung = new InMemoryRepository<>();
+        assertThrows(IllegalArgumentException.class, () -> khoChung.add(() -> "   "));
+        assertThrows(IllegalArgumentException.class, () -> khoChung.add(() -> null));
     }
 }
